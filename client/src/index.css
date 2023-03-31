@@ -1,0 +1,25 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+body > div:nth-child(3) {
+  display: none;
+}
+
+body > div:nth-child(4) > div > div {
+  display: none;
+}
+
+body > mini-popup + div {
+  display: none;
+}
+
+div[style~="99999"] {
+  display: none;
+}
+
+.e-schedule {
+  background-color: #fff;
+  border: 1px solid rgba(0,0,0,.12);
+  /* height: 100% !important; */
+}
