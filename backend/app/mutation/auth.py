@@ -6,6 +6,7 @@ import strawberry
 from strawberry.types import Info
 from app.context import CustomContext
 from app.utils import Error
+from models.models import Role
 
 from models.models import User
 
@@ -58,7 +59,7 @@ class AuthMutation:
                     message="Введенный код не подходит",
                 )
 
-            user = User(name=inp.name, login=inp.login, password=inp.password)
+            user = User(name=inp.name, login=inp.login, password=inp.password, role=Role.STUDENT)
 
             s.add(user)
             await s.commit()

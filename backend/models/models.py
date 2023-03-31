@@ -41,7 +41,7 @@ class User(Base):
     name: Mapped[str] = mapped_column(String(LIMIT))
     login: Mapped[str] = mapped_column(String(LIMIT))
     password: Mapped[str] = mapped_column(String(LIMIT))
-    role: Mapped[Role] = mapped_column(insertion_default=lambda: Role.STUDENT)
+    role: Mapped[Role] = mapped_column()
     groups: Mapped[list["Group"]] = relationship(
         secondary=ugassociation_table,
         back_populates="users",

@@ -64,11 +64,16 @@ class ScheduleType:
             if data:
                 evts.start_day_hour = min(data, key=lambda e: e.start).start.hour
             if data:
-                evts.end_day_hour = max(data, key=lambda e: e.end or datetime(year=2002, month=12, day=4, hour=19)).start.hour + 2
-            
-            return evts
+                evts.end_day_hour = (
+                    max(
+                        data,
+                        key=lambda e: e.end
+                        or datetime(year=2002, month=12, day=4, hour=19),
+                    ).start.hour
+                    + 2
+                )
 
-        
+            return evts
 
     @strawberry.field
     async def groups(self, info: Info["CustomContext", Any]) -> list["GroupType"]:

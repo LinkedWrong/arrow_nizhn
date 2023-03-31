@@ -10,7 +10,7 @@ import Divider from '@mui/material/Divider';
 
 import Box from "@mui/material/Box"
 import TextField from "@mui/material/TextField"
-import { Button, FormGroup, IconButton, ListItem, ListItemIcon,} from '@mui/material';
+import { Button, FormGroup, IconButton, ListItem, ListItemIcon, } from '@mui/material';
 import Stack from "@mui/material/Stack"
 import { DateField } from '@mui/x-date-pickers/DateField';
 import ListItemButton from "@mui/material/ListItemButton"
@@ -101,7 +101,10 @@ const EditPage = () => {
         id: schedule.id,
         name: schedule.name,
         start: schedule.start,
-        end: schedule.end
+        end: schedule.end,
+        events: {
+          inner: []
+        }
       })
     },
     onError: console.log
@@ -354,7 +357,6 @@ const EditPage = () => {
                 }}
               >
                 Сохранить
-
               </Button>
             </Stack>
 
@@ -419,20 +421,6 @@ const EditPage = () => {
                     </ListItem>
                   ))}
                   <Divider sx={{ my: 2 }} />
-                  <ListItem disablePadding>
-                    <ListItemButton onClick={() => {
-                      addNewEvent({
-                        name: "",
-                        start: dayjs(),
-                        end: dayjs()
-                      })
-                    }}>
-                      <ListItemIcon>
-                        <AddIcon />
-                      </ListItemIcon>
-                      <ListItemText id="-12" primary="Добавить" />
-                    </ListItemButton>
-                  </ListItem>
                 </List>
 
               </Box>
@@ -455,6 +443,20 @@ const EditPage = () => {
                 }} />
             </Stack>
           </ListItem>))}
+          <ListItem disablePadding>
+            <ListItemButton onClick={() => {
+              addNewEvent({
+                name: "",
+                start: dayjs(),
+                end: dayjs()
+              })
+            }}>
+              <ListItemIcon>
+                <AddIcon />
+              </ListItemIcon>
+              <ListItemText id="-12" primary="Добавить" />
+            </ListItemButton>
+          </ListItem>
         </List>
         {(changing.newEvents.length !== 0) && (
           <Button

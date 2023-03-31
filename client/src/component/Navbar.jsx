@@ -28,7 +28,7 @@ function ResponsiveAppBar() {
   const [anchorElUser, setAnchorElUser] = useState(null)
   const [isOpen, setIsOpen] = useState(false)
 
-  const [isUserOpen, setIsUserOpen] = useState(true)
+  const [isUserOpen, setIsUserOpen] = useState(false)
 
   const ref = useRef()
 
@@ -150,59 +150,34 @@ function ResponsiveAppBar() {
           <Box sx={{ flexGrow: 1 }} />
 
           {user ? (
-            <Box sx={{ flexGrow: 0 }}>
-              <Tooltip title={user.name || 'Open settings'}>
-                <IconButton
-                  ref={ref}
-                  onClick={handleOpenUserMenu}
-                  sx={{ p: 0 }}
-                >
-                  <Avatar alt={user.name || 'U'} />
-                </IconButton>
-              </Tooltip>
-              <Menu
-                sx={{ mt: '45px' }}
-                id="menu-appbar"
-                anchorEl={anchorElUser}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                open={isUserOpen}
-                onClose={handleCloseUserMenu}
-
-              >
-                <MenuItem
-                  key={'logout'}
+            <Stack direction={"row"} spacing={1}>
+              {user.role && (
+                <Button
+                  variant='contained'
+                  color='primary'
+                  key={'edit'}
                   onClick={() => {
-                    localStorage.removeItem('token')
-                    console.log(user)
-                    setUser(null)
+                    navigate("/edit")
                   }}
                 >
-                  <Typography textAlign="center">
-                    {'Выйти'}
-                  </Typography>
-                </MenuItem>
-                {user.role && (
-                  <MenuItem
-                    key={'edit'}
-                    onClick={() => {
-                      navigate("/edit")
-                    }}
-                  >
-                    <Typography textAlign="center">
-                      {'Расписания'}
-                    </Typography>
-                  </MenuItem>
-                )}
-              </Menu>
-            </Box>
+                  {/* <Typography textAlign="center"> */}
+                  Расписания
+                  {/* </Typography> */}
+                </Button>)
+              }
+              <Button
+                variant='contained'
+                color='secondary'
+                key={'logout'}
+                onClick={() => {
+                  localStorage.removeItem('token')
+                  console.log(user)
+                  setUser(null)
+                }}
+              >
+                {'Выйти'}
+              </Button>
+            </Stack>
           ) : (
             <Box sx={{ flexGrow: 0 }}>
               <Stack
@@ -247,8 +222,8 @@ function ResponsiveAppBar() {
             </Box>
           )}
         </Toolbar>
-      </Container>
-    </AppBar>
+      </Container >
+    </AppBar >
   )
 }
 export default ResponsiveAppBar

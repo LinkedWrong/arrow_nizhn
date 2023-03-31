@@ -36,17 +36,22 @@ export const useSchedulesStore = create(immer(set => ({
     let changing = state.changing;
     const eventIndex = changing.events.inner.findIndex((e => e.id === event.id))
     changing.events.inner[eventIndex] = event
+    state.updateSchedule(state.changing)
   }),
   addNewEvent: (event) => set(state => {
     state.changing.newEvents.push(event)
+    state.updateSchedule(state.changing)
   }),
   setEvents: (events) => set(state => {
     state.changing.events.inner = events
+    state.updateSchedule(state.changing)
   }),
   clearNewEvents: () => set(state => {
     state.changing.newEvents = []
+    state.updateSchedule(state.changing)
   }),
   updateNewEvent: (index, event) => set(state => {
     state.changing.newEvents[index] = event
+    state.updateSchedule(state.changing)
   })
 })))

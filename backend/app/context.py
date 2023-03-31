@@ -11,10 +11,7 @@ from starlette.requests import Request
 
 from models.models import Role
 
-engine = create_async_engine(
-    "postgresql+asyncpg://postgres:1@localhost/arrow", echo=True
-)
-
+engine = create_async_engine("sqlite+aiosqlite:///sqlite.db", echo=True)
 
 async_session = async_sessionmaker(engine, expire_on_commit=False)
 

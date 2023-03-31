@@ -18,7 +18,7 @@ import "../index.css";
 import { useGroupsStore } from "../store/groups";
 
 export default function Schedule() {
-    const currentGroup = useGroupsStore(s => s.currentGroup)
+  const currentGroup = useGroupsStore(s => s.currentGroup)
 
   const [data, setData] = useState(currentGroup?.schedule.events.inner || [])
 
@@ -60,7 +60,7 @@ export default function Schedule() {
         <Toolbar />
         <DateNavigator />
         <TodayButton messages={{ today: "Сегодня" }} />
-        <ViewSwitcher  />
+        <ViewSwitcher />
 
         <Appointments />
 
